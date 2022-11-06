@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Todo Liste Applikation</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <button class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#addTodo" type="submit">Todo hinzufügen</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- todo list-->
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Aufgabe</th>
+      <th scope="col">Beschreibung</th>
+      <th scope="col">Erledigt</th>
+      <th scrope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let todo of todoList">
+      <td>{{todo.name}}</td>
+      <td>{{todo.content}}</td>
+      <td>{{todo.done ? 'ja' : 'nein'}}</td>
+
+      <td>
+        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editTodo" (click)="editTodo(todo)">Bearbeiten</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteTodo(todo)">Löschen</button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+
+  <!-- "Add Todo" modal -->
+  <div class="modal fade" id="addTodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Neues Todo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="todoInput">
+            <div class="mb-3">
+              <label for="TodoName" class="form-label">Aufgabe</label>
+              <input type="text" formControlName="name" class="form-control" id="TodoName" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="TodoInhalt" class="form-label">Beschreibung</label>
+              <input type="text" formControlName="content" class="form-control" id="TodoInhalt" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" formControlName="done" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Erledigt</label>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addTodo()">Todo Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- "Edit Todo" modal -->
+  <div class="modal fade" id="editTodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Todo bearbeiten</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="todoInput">
+            <div class="mb-3">
+              <label for="TodoName" class="form-label">Aufgabe</label>
+              <input type="text" formControlName="name" class="form-control" id="TodoName" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="TodoInhalt" class="form-label">Beschreibung</label>
+              <input type="text" formControlName="content" class="form-control" id="TodoInhalt" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" formControlName="done" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Erledigt</label>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+          <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="updateTodo()">Speichern</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+

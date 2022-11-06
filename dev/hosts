@@ -1,2 +1,3 @@
 127.0.0.1 localhost
-10.11.95.39 workstation
+# eigene ip als workstation setzen für nginx
+# 192.168.179.83 workstation

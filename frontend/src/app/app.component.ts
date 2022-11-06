@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+    email = "me@example.com";
+
+    onKeyUp() {
+      console.log(this.email)
+    }
+
+    input(event: Event) {
+        this.email = (event.target as HTMLInputElement).value;
+    }
 }
